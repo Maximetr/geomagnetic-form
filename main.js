@@ -27,7 +27,7 @@ var mymap = L.map('mapid').setView([64, 100], 2);
                                 }
                             }
                             sel.selectedIndex = index;
-                            mymap.setView([feature.properties.GeogLat+5, feature.properties.GeogLon], 2.5);
+                            mymap.setView([feature.properties.GeogLat+5, feature.properties.GeogLon], 1);
                         });
                     }, 
                     pointToLayer: function(feature, latlng) {

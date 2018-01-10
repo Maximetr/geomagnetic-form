@@ -36,25 +36,25 @@ session_start();
                 <div class = "obsselect">
                     <p>Название обсерватории</p>
                     <select  id="obsnametab" name="obsnametab">
-                        <option value = "AAA">AAA</option>
-                        <option value = "AIA">AIA</option>
-                        <option value = "ARK">ARK</option>
-                        <option value = "ASH">ASH</option>
-                        <option value = "BOX">BOX</option>
-                        <option value = "CSS">CSS</option>
-                        <option value = "CWE">CWE</option>
-                        <option value = "DIK">DIK</option>
-                        <option value = "HIS">HIS</option>
-                        <option value = "IRT">IRT</option>
-                        <option value = "KGD">KGD</option>
-                        <option value = "KIV">KIV</option>
-                        <option value = "KZN">KZN</option>
-                        <option value = "LNN">LNN</option>
-                        <option value = "LVV">LVV</option>
-                        <option value = "MGD">MGD</option>
-                        <option value = "MOS">MOS</option>
-                        <option value = "NVS">NVS</option>
-                        <option value = "PET">PET</option>
+                        <option value = "AAA">AAA, Alma-Ata</option>
+                        <option value = "AIA">AIA, Argentine Islands</option>
+                        <option value = "ARK">ARK, Arkhangelsk</option>
+                        <option value = "ASH">ASH, Ashkhabad</option>
+                        <option value = "BOX">BOX, Borok</option>
+                        <option value = "CSS">CSS, Cape Chelyuskin</option>
+                        <option value = "CWE">CWE, Cape  Wellen (Uelen)</option>
+                        <option value = "DIK">DIK, Dixon (Dikson Island)</option>
+                        <option value = "HIS">HIS, Heiss Island (Druzhnaya)</option>
+                        <option value = "IRT">IRT, Irkutsk (Patrony)</option>
+                        <option value = "KGD">KGD, Karaganda</option>
+                        <option value = "KIV">KIV, Kiev</option>
+                        <option value = "KZN">KZN, Kazan</option>
+                        <option value = "LNN">LNN, Voyekovo (Leningrad)</option>
+                        <option value = "LVV">LVV, Lvov</option>
+                        <option value = "MGD">MGD, Magadan</option>
+                        <option value = "MOS">MOS, Moscow</option>
+                        <option value = "NVS">NVS, Novosibirsk</option>
+                        <option value = "PET">PET, Paratunka (Petropavlovsk)</option>
                     </select>
                 </div>
             </div>
