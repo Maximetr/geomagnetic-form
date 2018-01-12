@@ -27,7 +27,7 @@ var mymap = L.map('mapid').setView([64, 100], 2);
                                 }
                             }
                             sel.selectedIndex = index;
-                            mymap.setView([feature.properties.GeogLat+5, feature.properties.GeogLon], 1);
+                            mymap.setView([feature.properties.GeogLat+1, feature.properties.GeogLon], 6);
                         });
                     }, 
                     pointToLayer: function(feature, latlng) {
@@ -51,4 +51,22 @@ var mymap = L.map('mapid').setView([64, 100], 2);
 				.setContent("You clicked the map at " + e.latlng.toString())
 				.openOn(mymap);
 		    }
-		    mymap.on('click', onMapClick);
+            mymap.on('click', onMapClick);
+            
+
+            function onSelectChange() {
+                var select = document.getElementById('obsnametab');
+                var selIndex = select.selectedIndex;
+                for (var i=0; i<arr.length; i++) {
+                    if (select.options[selIndex].value == arr[i]) {
+                        L.geoJSON(dronestrikes, {
+                            onEachFeature: function(feature, layer) {
+                                var code = feature.properties.code;
+                                if (arr[i] == code) {
+                                    mymap.setView([feature.properties.GeogLat, feature.properties.GeogLon], 6);
+                                }
+                            }
+                        })
+                    }
+                }
+            }

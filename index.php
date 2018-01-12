@@ -35,7 +35,7 @@ session_start();
                 </div>
                 <div class = "obsselect">
                     <p>Название обсерватории</p>
-                    <select  id="obsnametab" name="obsnametab">
+                    <select  id="obsnametab" name="obsnametab" onchange="onSelectChange()">
                         <option value = "AAA">AAA, Alma-Ata</option>
                         <option value = "AIA">AIA, Argentine Islands</option>
                         <option value = "ARK">ARK, Arkhangelsk</option>
