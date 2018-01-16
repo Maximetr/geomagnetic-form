@@ -82,32 +82,42 @@ session_start();
                 <div class = "formats">
                     <div class = "WDC">
                         <label>
-                            <input type="radio" name="savedata" class="ntSaveForms" value="1" checked />WDC
+                            <input type="radio" name="savedata" class="ntSaveForms" value="WDC" checked />WDC
                         </label>
                     </div>
                     <div class = "CSV">
                         <label>
-                            <input type="radio" name="savedata" class="ntSaveForms" value="2" />CSV
+                            <input type="radio" name="savedata" class="ntSaveForms" value="CSV" />CSV
                         </label>
                     </div>
                     <div class = "IAGA2002">
                         <label>
-                            <input type="radio" name="savedata" class="ntSaveForms" value="3" />IAGA2002
+                            <input type="radio" name="savedata" class="ntSaveForms" value="IAGA2002" />IAGA2002
                         </label>
                     </div>
                     <div class = "submit">
                         <input type="submit" value="Найти" name="submit1" id="" />
-                    </div>
-                    <textarea>
-                        <?php
-                        //error_reporting(E_ALL);
-                        //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                        include_once 'components/functions.php';
-                        include_once 'models/newiaga.php';
-                        include_once 'models/wdcb.php';
-                        include_once 'models/csv.php';
-                        ?>
-                    </textarea>
+                    </div><?php if (isset($_POST['submit1'])) : ?>
+                    <textarea><?php
+                        /* error_reporting(E_ALL);
+                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); */
+                        require_once('components/connect.php');
+                        $iagaKod = $_REQUEST['obsnametab'];
+                        $mindate = $_REQUEST['date1'];
+                        $maxdate = $_REQUEST['date2'];
+                        $format = $_REQUEST['savedata'];
+                        if ($format == 'WDC') {
+                            include_once('models/wdcb.php');
+                        }
+                        if ($format == 'CSV') {
+                            include_once('models/csv.php');
+                        }
+                        if ($format == 'IAGA2002') {
+                            include_once('models/iaga.php');
+                        }
+
+                        ?></textarea>
+                        <?php endif; ?>
                 </div>
             </div>
         </form>

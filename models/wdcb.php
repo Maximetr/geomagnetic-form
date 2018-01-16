@@ -1,15 +1,14 @@
 <?php
-if ($value == "1") {
     $table = array();
 
-    $query = mysqli_query($connect, ("SELECT * FROM supertable WHERE Kod ='$KOD' AND Date>='$minInputdate' AND Date<='$maxInputdate'"));
+    $query = mysqli_query($connect, ("SELECT * FROM hourdata WHERE Kod ='$iagaKod' AND Date>='$mindate' AND Date<='$maxdate'"));
     
     while ($result = mysqli_fetch_array($query, MYSQLI_NUM)) {                    //		запись результата запроса в массив
         $table[] = $result;
     }
 $end = end($table);
 $lastkey = key($table);
-$file = "files/$KOD$minInputdate--$maxInputdate"+"hv.wdc";
+
 //$f = fopen("$file", 'w');
 for ($i=0; $i<=$lastkey; $i++) {
     $observkod = $table[$i][0];
@@ -50,5 +49,5 @@ echo $row;
 
 }
 //fclose($f);
-}
+
 ?>

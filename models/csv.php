@@ -1,8 +1,7 @@
 <?php
-if ($value == "2") {
     $table = array();
 
-    $query = mysqli_query($connect, ("SELECT * FROM supertable WHERE Kod ='$KOD' AND Date>='$minInputdate' AND Date<='$maxInputdate'"));
+    $query = mysqli_query($connect, ("SELECT * FROM hourdata WHERE Kod ='$iagaKod' AND Date>='$mindate' AND Date<='$maxdate'"));
     
     while ($result = mysqli_fetch_array($query, MYSQLI_NUM)) {                    //		запись результата запроса в массив
         $table[] = $result;
@@ -47,5 +46,4 @@ echo $row;
 
 }
 
-}
 ?>
