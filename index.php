@@ -6,7 +6,7 @@ session_start();
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title></title>
+<title>Геомагнитные данные</title>
 
 <link  rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="leaflet/leaflet.css" />
@@ -20,13 +20,13 @@ session_start();
 
             <div class = "form">
                 <form method="post" action="index.php">
-                        <div class = "datatype">
-                        <h3>Вид данных</h3>
+                        <div class = "formblock">
+                            <h3>Вид данных</h3>
                                 <label class="ntSaveForms">
                                     <input type="radio" name="typedata" class="ntSaveForms" value="3" checked />Среднечасовые
                                 </label>
                         </div>
-                    <div class = "observatory">
+                    <div class = "formblock">
                         <h3>Обсерватория</h3>
                             <p>Название обсерватории</p>
                             <select  id="obsnametab" name="obsnametab" onchange="onSelectChange()">
@@ -52,13 +52,13 @@ session_start();
                             </select>
                     </div>
 
-                    <div class = "timeselect">
+                    <div class = "formblock">
                         <h3>Временной интервал</h3>
-                        <lable>От
-                            <input type="text" name="date1" id="date1" class="ntSaveForms" placeholder="YYYY-MM-DD" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10">                
+                        <lable>от
+                            <input type="text" name="date1" id="date1" class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10" required>                
                         </lablel>
                         <lable>до
-                            <input type="text" name="date2" id="date2" class="ntSaveForms" placeholder="YYYY-MM-DD" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10">
+                            <input type="text" name="date2" id="date2" class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10" required>
                         </label>
                     </div>
 
@@ -67,19 +67,23 @@ session_start();
                             <label>
                                 <input type="radio" name="savedata" class="ntSaveForms" value="WDC" checked />WDC
                             </label>
-                            <label>
-                                <input type="radio" name="savedata" class="ntSaveForms" value="CSV" />CSV
-                            </label>
-                            <label>
-                                <input type="radio" name="savedata" class="ntSaveForms" value="IAGA2002" />IAGA2002
-                            </label></br>
-                            <input class="button" type="submit" value="Найти" name="submit1" id="" />
+                            <div class="formatCheckbox">
+                                <label>
+                                    <input type="radio" name="savedata" class="ntSaveForms" value="CSV" />CSV
+                                </label>
+                            </div>
+                            <div class="formatCheckbox">
+                                <label>
+                                    <input type="radio" name="savedata" class="ntSaveForms" value="IAGA2002" />IAGA2002
+                                </label>
+                            </div></br>
+                                <input class="button" type="submit" value="Найти" name="submit1" id="" />
                     </div>
             </div>
         
                             <?php if (isset($_POST['submit1'])) : ?>
                             <div class="textarea clearfix">
-                                <textarea><?php
+                                <textarea readonly><?php
                                     /* error_reporting(E_ALL);
                                     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); */
                                     require_once('components/connect.php');

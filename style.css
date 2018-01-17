@@ -13,6 +13,7 @@
 	/* visibility: hidden;*/
 	float: right;
 	margin-left:15px;
+	border:1px solid rgb(134, 134, 134);
 	-moz-border-radius:  5px; /* Firefox */
 	-webkit-border-radius:  5px; /* Safari 4 */
 	border-radius:  5px; /* IE 9, Safari 5, Chrome */
@@ -22,8 +23,11 @@
 	display: inline-block;
 }
 textarea {
+	outline: none;
 	width: 1150px;
 	height: 300px;
+	resize: none;
+	background-color: rgb(240, 240, 240);
 }
 .textarea {
 	padding-top:40px;
@@ -35,26 +39,52 @@ textarea {
 }
 .button {
 	margin-top:10px;
-	margin-left: 75px;
+	margin-left:81px;
+	width:90px;
 	-moz-border-radius:  5px; /* Firefox */
 	-webkit-border-radius:  5px; /* Safari 4 */
 	border-radius:  5px; /* IE 9, Safari 5, Chrome */
 }
-.datatype {
-	padding-bottom: 20px;
-	border-bottom: 1px solid rgb(134, 134, 134);
-}
-.observatory {
+.formblock {
 	margin-top: -10px;
 	border-bottom:1px solid rgb(134, 134, 134);
 	padding-bottom: 20px;
 }
-.timeselect {
+.output {
 	margin-top: -10px;
-	border-bottom:1px solid rgb(134, 134, 134);
 	padding-bottom: 20px;
 }
 input {
+	outline:none;
 	text-align: center;
+	background-color: rgb(240, 240, 240);
+	-moz-border-radius:  5px;
+	-webkit-border-radius:  5px; 
+	border-radius:  5px; 
+	padding:3px;
 }
+
+select {
+	outline: none;
+	background-color: rgb(240, 240, 240);
+	-moz-border-radius:  5px; /* Firefox */
+	-webkit-border-radius:  5px; /* Safari 4 */
+	border-radius:  5px; /* IE 9, Safari 5, Chrome */
+	padding:3px;
+}
+.formatCheckbox {
+	border-left:1px solid rgb(134, 134, 134);
+	padding-left:10px;
+	margin-left:20px;
+	display: inline-block;
+}
+input:active, input:focus {
+	border:2px solid rgb(83, 83, 83);
+}
+select:active, select:focus {
+	border:1px solid rgb(83, 83, 83);
+}
+
+
+
 
