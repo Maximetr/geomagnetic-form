@@ -1,87 +1,30 @@
 ﻿.mainbody{
-
-	margin-left:100px;
-	margin-right:100px;
-	padding: 4px;
+	text-align: center;
 }
+.content {
+	display: inline-block;
 
+}
 .map{
 	/* visibility: hidden;*/
-	position: absolute; left: 25%;
-	width: 70%;
-	height: 200px;
+	float: right;
+	margin-left:15px;
 }
-.datatype {
-	width: 30%;
-}
-.datatype .head {
-	width: 30%;
-	height: 40px;
-	position: relative;
-}
-.datatype .hour {
-	width: 40%;
-	position: relative;
-
-}
-.observatory {
-	width: 30%;
-}
-.observatory .head {
-	width: 30%;
-	height: 20px;
-	position: relative;
-}
-.observatory .obsselect {
-	width: 50%;
-	padding: 3px;
-}
-.timeselect {
-	width: 25%;
-}
-.timeselect .head {
-	height: 40px;
-	padding: 3px;
-}
-.timeselect .mintime {
-	width: 49%;
-}
-.timeselect .maxtime {
-	width: 49%;
-	position: relative; left: 50%; top: -21.5px;
-}
-
-.output {
-	width: 100%;
-}
-.output .head {
-	height: 40px;
-	padding: 3px;
-}
-.output .formats {
-	padding: 3px;
-}
-.output .IAGA2002 {
-	position: relative; left: 14.6%; top: -47.5px;
-	width: 8%;
-	padding: 1px;
-}
-.output .CSV {
-	position: relative; left: 7.3%; top: -23.5px;
-	width: 7%;
-	padding: 1px;
-}
-.output .WDC {
-	width: 7%;
-	padding: 1px;
-}
-.output .submit {
-	width: 5%;
-	position: relative; top: -25px;
-	padding: 1px;
+.form {
+	text-align: left;
+	display: inline-block;
 }
 textarea {
 	width: 70%;
 	height: 300px;
 	position: relative; top: 20px;
+}
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.button {
+	margin-top:10px;
+	margin-left: 75px;
 }
