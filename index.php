@@ -76,32 +76,32 @@ session_start();
                             <input class="button" type="submit" value="Найти" name="submit1" id="" />
                     </div>
             </div>
+        
                             <?php if (isset($_POST['submit1'])) : ?>
-                            <textarea><?php
-                                /* error_reporting(E_ALL);
-                                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); */
-                                require_once('components/connect.php');
-                                $iagaKod = $_REQUEST['obsnametab'];
-                                $mindate = $_REQUEST['date1'];
-                                $maxdate = $_REQUEST['date2'];
-                                $format = $_REQUEST['savedata'];
-                                if ($format == 'WDC') {
-                                    include_once('models/wdcb.php');
-                                }
-                                if ($format == 'CSV') {
-                                    include_once('models/csv.php');
-                                }
-                                if ($format == 'IAGA2002') {
-                                    include_once('models/iaga.php');
-                                }
+                            <div class="textarea clearfix">
+                                <textarea><?php
+                                    /* error_reporting(E_ALL);
+                                    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); */
+                                    require_once('components/connect.php');
+                                    $iagaKod = $_REQUEST['obsnametab'];
+                                    $mindate = $_REQUEST['date1'];
+                                    $maxdate = $_REQUEST['date2'];
+                                    $format = $_REQUEST['savedata'];
+                                    if ($format == 'WDC') {
+                                        include_once('models/wdcb.php');
+                                    }
+                                    if ($format == 'CSV') {
+                                        include_once('models/csv.php');
+                                    }
+                                    if ($format == 'IAGA2002') {
+                                        include_once('models/iaga.php');
+                                    }
 
-                                ?></textarea>
-                                <?php endif; ?>
-
-                    
-                </form>
-            
-        </div>        
+                                    ?></textarea>
+                                    <?php endif; ?>
+                            </div>                  
+                </form>           
+        </div>
     <script type='text/javascript' src='ntsaveforms.js'></script>
     </div>
     <script src="leaflet/leaflet.js"></script>

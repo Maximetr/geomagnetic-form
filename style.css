@@ -3,21 +3,30 @@
 }
 .content {
 	display: inline-block;
-
+	background-color: rgb(250, 248, 248);
+	padding:20px;
+	-moz-border-radius:  5px; /* Firefox */
+	-webkit-border-radius:  5px; /* Safari 4 */
+	border-radius:  15px; /* IE 9, Safari 5, Chrome */
 }
 .map{
 	/* visibility: hidden;*/
 	float: right;
 	margin-left:15px;
+	-moz-border-radius:  5px; /* Firefox */
+	-webkit-border-radius:  5px; /* Safari 4 */
+	border-radius:  5px; /* IE 9, Safari 5, Chrome */
 }
 .form {
 	text-align: left;
 	display: inline-block;
 }
 textarea {
-	width: 70%;
+	width: 1150px;
 	height: 300px;
-	position: relative; top: 20px;
+}
+.textarea {
+	padding-top:40px;
 }
 .clearfix:after {
     content: "";
@@ -27,4 +36,25 @@ textarea {
 .button {
 	margin-top:10px;
 	margin-left: 75px;
+	-moz-border-radius:  5px; /* Firefox */
+	-webkit-border-radius:  5px; /* Safari 4 */
+	border-radius:  5px; /* IE 9, Safari 5, Chrome */
 }
+.datatype {
+	padding-bottom: 20px;
+	border-bottom: 1px solid rgb(134, 134, 134);
+}
+.observatory {
+	margin-top: -10px;
+	border-bottom:1px solid rgb(134, 134, 134);
+	padding-bottom: 20px;
+}
+.timeselect {
+	margin-top: -10px;
+	border-bottom:1px solid rgb(134, 134, 134);
+	padding-bottom: 20px;
+}
+input {
+	text-align: center;
+}
+
