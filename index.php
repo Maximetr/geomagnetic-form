@@ -12,7 +12,7 @@ session_start();
 <link rel="stylesheet" href="leaflet/leaflet.css" />
 </head>
 <body>
-
+    <header></header>
     <div class = "mainbody">
         <div class = "content clearfix">
             <div class="map" id="mapid" style="width: 855.58px; height: 433px"></div>
@@ -77,10 +77,14 @@ session_start();
                                     <input type="radio" name="savedata" class="ntSaveForms" value="IAGA2002" />IAGA2002
                                 </label>
                             </div></br>
-                                <input class="button" type="submit" value="Найти" name="submit1" id="" />
+                                <input class="button" type="submit" value="Найти" name="submit1" id="" /></br>
+                                <div class="help"><a href="javascript:sh()">Помощь</a></div>
                     </div>
             </div>
-        
+            
+                            <div id="info" style="padding-top:15px;">
+                            <p>помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь </p>
+                            </div>
                             <?php if (isset($_POST['submit1'])) : ?>
                             <div class="textarea clearfix">
                                 <textarea readonly><?php
@@ -106,6 +110,7 @@ session_start();
                             </div>                  
                 </form>           
         </div>
+        <footer></footer>
     <script type='text/javascript' src='ntsaveforms.js'></script>
     </div>
     <script src="leaflet/leaflet.js"></script>
@@ -119,7 +124,14 @@ session_start();
             $("#date2").mask("9999-99-99",{placeholder:"yyyy-mm-dd"});
             });
     </script>
-    <script src="main.js"></script>
+<script type="text/javascript">
+    sh();
+    function sh() {
+    obj = document.getElementById("info");
+    if( obj.style.display == "none" ) { obj.style.display = "block"; } else { obj.style.display = "none"; }
+    }
+</script>
+<script src="main.js"></script>
 </body>
 </html>
     

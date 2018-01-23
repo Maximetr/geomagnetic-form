@@ -1,16 +1,26 @@
-﻿.mainbody{
+﻿body {
+	height: 100%;
+	margin:0;
+   }
+html { 
+	position:relative; 
+	min-height:100%;
+   }
+.mainbody{
 	text-align: center;
+	padding-bottom: 200px;
+	margin-top:20px;
 }
 .content {
 	display: inline-block;
 	background-color: rgb(250, 248, 248);
-	padding:20px;
 	-moz-border-radius:  5px; /* Firefox */
 	-webkit-border-radius:  5px; /* Safari 4 */
 	border-radius:  15px; /* IE 9, Safari 5, Chrome */
+	padding: 20px;
+
 }
 .map{
-	/* visibility: hidden;*/
 	float: right;
 	margin-left:15px;
 	border:1px solid rgb(134, 134, 134);
@@ -84,6 +94,26 @@ input:active, input:focus {
 select:active, select:focus {
 	border:1px solid rgb(83, 83, 83);
 }
+
+.help {
+	margin-left:100px;
+	margin-top:10px;
+}
+.info {
+	float: right;
+}
+header {
+	background-color: aqua;
+	min-height: 100px;
+}
+footer {
+	background-color: aqua;
+	height: 100px; ;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
 
 
 
