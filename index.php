@@ -12,7 +12,11 @@ session_start();
 <link rel="stylesheet" href="leaflet/leaflet.css" />
 </head>
 <body>
-    <header></header>
+    <header>
+        <div class="logo">
+            Лого
+        </div>
+    </header>
     <div class = "mainbody">
         <div class = "content clearfix">
             <div class="map" id="mapid" style="width: 855.58px; height: 433px"></div>
@@ -110,7 +114,9 @@ session_start();
                             </div>                  
                 </form>           
         </div>
-        <footer></footer>
+        <footer>
+            
+        </footer>
     <script type='text/javascript' src='ntsaveforms.js'></script>
     </div>
     <script src="leaflet/leaflet.js"></script>

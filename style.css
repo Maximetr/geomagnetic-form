@@ -1,15 +1,21 @@
 ﻿body {
 	height: 100%;
 	margin:0;
+	width:100%;
+	text-align: center;
    }
 html { 
 	position:relative; 
 	min-height:100%;
+	text-align: center;
    }
 .mainbody{
+	display: inline-block;
+	width:1200px;
 	text-align: center;
 	padding-bottom: 200px;
 	margin-top:20px;
+	position: relative;
 }
 .content {
 	display: inline-block;
@@ -17,7 +23,8 @@ html {
 	-moz-border-radius:  5px; /* Firefox */
 	-webkit-border-radius:  5px; /* Safari 4 */
 	border-radius:  15px; /* IE 9, Safari 5, Chrome */
-	padding: 20px;
+	padding: 15px;
+	width:1150px;
 
 }
 .map{
@@ -105,13 +112,24 @@ select:active, select:focus {
 header {
 	background-color: aqua;
 	min-height: 100px;
+	width: 1200px;
+	padding-top:5px;
+	display: inline-block;
 }
 footer {
 	background-color: aqua;
 	height: 100px; ;
 	position: absolute;
 	bottom: 0;
-	width: 100%;
+	width: 1200px;
+	left:50%;
+	margin-left:-600px;
+}
+.logo {
+	background-color: azure;
+	width:10%;
+	height:90px;
+	margin-left:5px;
 }
 
 
