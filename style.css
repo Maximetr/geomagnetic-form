@@ -13,9 +13,9 @@ html {
 	display: inline-block;
 	width:1200px;
 	text-align: center;
-	padding-bottom: 200px;
+	padding-bottom: 100px; /*ставить в 2 раза больше высоты футера */
 	margin-top:20px;
-	position: relative;
+/* 	position: relative; */
 }
 .content {
 	display: inline-block;
@@ -110,28 +110,60 @@ select:active, select:focus {
 	float: right;
 }
 header {
-	background-color: aqua;
+	background-color: rgb(169, 172, 172);
 	min-height: 100px;
-	width: 1200px;
+	width: 100%;
 	padding-top:5px;
 	display: inline-block;
+	margin-bottom: -20px;
 }
 footer {
-	background-color: aqua;
-	height: 100px; ;
+	background-color: rgb(53, 53, 53);
+	height: 50px; ;
 	position: absolute;
 	bottom: 0;
-	width: 1200px;
-	left:50%;
-	margin-left:-600px;
+	width: 100%;
+/* 	left:50%;
+	margin-left:-600px; */
 }
 .logo {
-	background-color: azure;
+	background-color: rgb(217, 219, 219);
 	width:10%;
 	height:90px;
 	margin-left:5px;
 }
-
+.nav-bar {
+	display: inline-block;
+	margin-top:0;
+	width:1180px;
+	margin:10px 0px;
+}
+.nav-item {
+	background-color: rgb(209, 209, 209);
+	display: inline-block;
+	width:295px;
+	height:50px;
+	border-bottom: 1px inset rgb(134, 134, 134);
+}
+.nav-item.border {
+	width:294px;
+	border-left: 1px solid rgb(134, 134, 134);
+}
+li{
+	font-size:14px; /* Не забываем восстановить нормальные значения */
+	line-height:normal;
+	letter-spacing:normal;
+	display: -moz-inline-stack!important;
+	display:inline-block;
+	zoom:1;
+}
+ul {
+	font-size:0; /* убираем горизонтальные отступы */
+	line-height:0; /* ...и вертикальные в некоторых браузерах */
+	letter-spacing:-1px; /* переубеждаем webkit'ы */
+	padding:0;
+	margin:0;
+}
 
 
 
