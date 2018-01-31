@@ -3,6 +3,7 @@
 	margin:0;
 	width:100%;
 	text-align: center;
+	background-image: url('template/wdc_fon.jpg');
    }
 html { 
 	position:relative; 
@@ -13,7 +14,7 @@ html {
 	display: inline-block;
 	width:1200px;
 	text-align: center;
-	padding-bottom: 100px; /*ставить в 2 раза больше высоты футера */
+	padding-bottom: 200px; /*ставить в 2 раза больше высоты футера */
 	margin-top:20px;
 /* 	position: relative; */
 }
@@ -25,7 +26,7 @@ html {
 	border-radius:  15px; /* IE 9, Safari 5, Chrome */
 	padding: 15px;
 	width:1150px;
-
+	margin-top:20px;
 }
 .map{
 	float: right;
@@ -111,43 +112,105 @@ select:active, select:focus {
 }
 header {
 	background-color: rgb(169, 172, 172);
-	min-height: 100px;
-	width: 100%;
-	padding-top:5px;
+	min-height: 128px;
+	width: 1200px;
 	display: inline-block;
 	margin-bottom: -20px;
 }
+.top-bottom-line {
+	display: inline-block;
+	text-align: center;
+	width:100%;
+	background-color: #7C51CC;
+	height: 20px;
+}
+.gcras-link {
+	text-decoration: none;
+	color: #FFFFFF;
+	font-style: italic;
+}
+.center-line {
+	width:100%;
+	background-color: #FCEEAC;
+	height: 88px;
+}
+.logo1{
+	display: inline-block;
+	float: left;
+	height:59.6px;
+	padding:14.2px 0px 14.2px 71px;
+}
+.logo2 {
+	display: inline-block;
+	float: right;
+	height:59.6px;
+	padding:4.2px 71px 14.2px 0px;
+}
+.site-name {
+	display: inline-block;
+	width:837px;
+	height:88px;
+	text-align: left;
+}
+.site-name p {
+	margin:0;
+	color:#ff6633;
+	font-family: arial;
+	text-align: left;
+}
+.right-text {
+	float: right;
+	margin-right: 50px;
+}
+.left-text{
+	float: left;
+	font-size:1.8em;
+	margin-left:100px;
+}
+.center-text p{
+	font-size:1.8em;
+	float: left;
+	margin-left:350px;
+}
+
 footer {
-	background-color: rgb(53, 53, 53);
-	height: 50px; ;
+	height: 100px;
 	position: absolute;
 	bottom: 0;
-	width: 100%;
-/* 	left:50%;
-	margin-left:-600px; */
+	width: 1200px;
+	left:50%;
+	margin-left:-600px;
 }
-.logo {
-	background-color: rgb(217, 219, 219);
-	width:10%;
-	height:90px;
-	margin-left:5px;
+footer li {
+	font-size:12px; /* Не забываем восстановить нормальные значения */
+	line-height:normal;
+	letter-spacing:normal;
+	display: -moz-inline-stack!important;
+	display:inline-block;
+	zoom:1;
+	width:140px;
+}
+footer a {
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+footer p{
+	text-align: right;
+	margin-right:300px;
+	font-size: 12px;
 }
 .nav-bar {
 	display: inline-block;
-	margin-top:0;
+	margin-top:2px;
 	width:1180px;
-	margin:10px 0px;
 }
 .nav-item {
-	background-color: rgb(209, 209, 209);
 	display: inline-block;
 	width:295px;
-	height:50px;
-	border-bottom: 1px inset rgb(134, 134, 134);
 }
 .nav-item.border {
 	width:294px;
-	border-left: 1px solid rgb(134, 134, 134);
 }
 li{
 	font-size:14px; /* Не забываем восстановить нормальные значения */
@@ -164,7 +227,11 @@ ul {
 	padding:0;
 	margin:0;
 }
-
+header a {
+	text-decoration: none;
+	color: #FFFFFF;
+	font-style: italic;
+}
 
 
 

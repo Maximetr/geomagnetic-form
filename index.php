@@ -13,11 +13,52 @@ session_start();
 </head>
 <body>
     <header>
-        <div class="logo">
+       <div class="top-bottom-line">
+            <a class="gcras-link" href="http://www.gcras.ru" target="_blank">Геофизический  центр  Российской  академии  наук - ГЦ РАН</a>
+       </div>
+
+       <div class="center-line">
+            <div class="logo1 clearfix">
+                <img src="template/logo/logo_wds.gif"></img>
+            </div>
+
+            <div class="site-name">
+                <div class="left-text"><p>Мировой центр данных</p></div>
+                <div class="center-text"><p>по солнечно-земной физике</p></div>
+                <div class="right-text"><p>Москва, Россия</p></div>
+            </div>
+
+            <div class = "logo2 clearfix">
+                <img src="template/logo/logo_sun.ru.gif"></img>
+            </div>
+       </div>
+
+        <div class="top-bottom-line">
+            <div class="nav-bar">
+                <ul>
+                    <li>
+                        <div class="nav-item">
+                            <a href="http://www.icsu-wds.org/" target="_blank">Мировая система данных</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-item border">
+                            <a href="http://www.wdcb.ru/index.ru.html" target="_blank">МЦД в России и Украине</a>
+                        </div>
+                    </li>
+                    <li>                                                        
+                        <div class="nav-item border">
+                            <a href="#">English</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
     <div class = "mainbody">
-        <div class="nav-bar">
+
+    <!-- _________________________Панель навигации_______________ -->
+        <!-- <div class="nav-bar">
             <ul>
                 <li>
                     <div class="nav-item">
@@ -29,7 +70,7 @@ session_start();
                         раздел
                     </div>
                 </li>
-                <li>
+                <li>                                                        
                     <div class="nav-item border">
                         раздел
                     </div>
@@ -40,7 +81,12 @@ session_start();
                     </div>
                 </li>
             </ul>
-        </div>
+        </div> -->
+
+    <!--________________________Конец панели_____________________-->
+
+
+
             <div class = "content clearfix">
                 <div class="map" id="mapid" style="width: 855.58px; height: 433px"></div>
             
@@ -138,7 +184,31 @@ session_start();
                     </form>           
             </div>
     </div>
-    <footer></footer>
+    <footer>
+        <div class = "footer-menu">
+            <ul>
+                <li>
+                    <a href="http://www.wdcb.ru/stp/index.ru.html">Главная страница</a>
+                </li>
+                <li>
+                    <a href="http://www.wdcb.ru/stp/data.ru.html">Данные</a>
+                </li>
+                <li>
+                    <a href="http://www.wdcb.ru/stp/prognoz.ru.html">Прогнозы</a>
+                </li>
+                <li>
+                    <a href="http://www.wdcb.ru/stp/links.ru.html" target="_blank">Ссылки</a>
+                </li>
+                <li>
+                    <a href="http://www.wdcb.ru/stp/contacts.ru.html" target="_blank">Контактируйте с нами</a>
+                </li>
+            </ul>
+        </div>
+        <div class="line">
+            <img src="template/logo/line.gif"></img>
+        </div>
+        <p>© 1995-2018 МЦД по СЗФ, ГЦ РАН</p>
+    </footer>
     <script type='text/javascript' src='ntsaveforms.js'></script>
     </div>
     <script src="leaflet/leaflet.js"></script>
