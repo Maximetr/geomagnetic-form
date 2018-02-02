@@ -137,8 +137,9 @@ session_start();
 
                         <div class = "output">
                             <h3>Формат вывода данных</h3>
-                                <label>
+                                <label style="margin-right:-5px;">
                                     <input type="radio" name="savedata" class="ntSaveForms" value="WDC" checked />WDC
+                                    <a href="http://www.wdcb.ru/stp/geomag/format_hourly.ru.html" target="_blank"><img class="question" src="template/question.png" alt="О формате" title="О формате"></a>
                                 </label>
                                 <div class="formatCheckbox">
                                     <label>
@@ -148,6 +149,7 @@ session_start();
                                 <div class="formatCheckbox">
                                     <label>
                                         <input type="radio" name="savedata" class="ntSaveForms" value="IAGA2002" />IAGA2002
+                                        <a href="https://www.ngdc.noaa.gov/IAGA/vdat/IAGA2002/iaga2002format.html#fh" target="_blank"><img class="question" src="template/question.png" alt="О формате" title="О формате"></a>
                                     </label>
                                 </div></br>
                                     <input class="button" type="submit" value="Найти" name="submit1" id="" /></br>

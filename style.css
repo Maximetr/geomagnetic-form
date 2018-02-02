@@ -92,8 +92,8 @@ select {
 }
 .formatCheckbox {
 	border-left:1px solid rgb(134, 134, 134);
-	padding-left:10px;
-	margin-left:20px;
+	padding-left:5px;
+	margin-left:5px;
 	display: inline-block;
 }
 input:active, input:focus {
@@ -136,13 +136,11 @@ header {
 }
 .logo1{
 	display: inline-block;
-	float: left;
 	height:59.6px;
 	padding:14.2px 0px 14.2px 71px;
 }
 .logo2 {
 	display: inline-block;
-	float: right;
 	height:59.6px;
 	padding:4.2px 71px 14.2px 0px;
 }
@@ -231,6 +229,12 @@ header a {
 	text-decoration: none;
 	color: #FFFFFF;
 	font-style: italic;
+}
+
+.question {
+	width:20px;
+	height: 20px;
+	margin-left:-5px;
 }
 
 
