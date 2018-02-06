@@ -205,7 +205,7 @@ session_start();
             </ul>
         </div>
         <div class="line">
-            <img src="template/logo/line.gif"></img>
+            <img src="template/line.gif"></img>
         </div>
         <p>© 1995-2018 МЦД по СЗФ, ГЦ РАН</p>
     </footer>
