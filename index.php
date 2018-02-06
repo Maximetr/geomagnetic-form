@@ -161,22 +161,9 @@ session_start();
                                 <?php if (isset($_POST['submit1'])) : ?>
                                 <div class="textarea clearfix">
                                     <textarea readonly><?php
-                                        /* error_reporting(E_ALL);
-                                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); */
-                                        require_once('components/connect.php');
-                                        $iagaKod = $_REQUEST['obsnametab'];
-                                        $mindate = $_REQUEST['date1'];
-                                        $maxdate = $_REQUEST['date2'];
-                                        $format = $_REQUEST['savedata'];
-                                        if ($format == 'WDC') {
-                                            include_once('models/wdcb.php');
-                                        }
-                                        if ($format == 'CSV') {
-                                            include_once('models/csv.php');
-                                        }
-                                        if ($format == 'IAGA2002') {
-                                            include_once('models/iaga.php');
-                                        }
+                                        error_reporting(E_ALL);
+                                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                                        include('components/connect.php');
 
                                         ?></textarea>
                                         <?php endif; ?>
