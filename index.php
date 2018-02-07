@@ -164,7 +164,9 @@ session_start();
                                         error_reporting(E_ALL);
                                         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                                         include('components/connect.php');
-
+                                        include('components/controller.php');
+                                        $controller = new Controller;
+                                        $controller->run();
                                         ?></textarea>
                                         <?php endif; ?>
                                 </div>                  
