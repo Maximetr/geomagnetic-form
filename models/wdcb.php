@@ -9,6 +9,7 @@
 $end = end($table);
 $lastkey = key($table);
 
+$ready_table = array();
 //$f = fopen("$file", 'w');
 for ($i=0; $i<=$lastkey; $i++) {
     $observkod = $table[$i][0];
@@ -44,10 +45,10 @@ for ($i=0; $i<=$lastkey; $i++) {
     $basic = str_pad($basic, 4, "0", STR_PAD_LEFT);
     
 $row = "$observkod$year$month$element$day  $usznk$sostdays$I_$basic$hoursets[0]$hoursets[1]$hoursets[2]$hoursets[3]$hoursets[4]$hoursets[5]$hoursets[6]$hoursets[7]$hoursets[8]$hoursets[9]$hoursets[10]$hoursets[11]$hoursets[12]$hoursets[13]$hoursets[14]$hoursets[15]$hoursets[16]$hoursets[17]$hoursets[18]$hoursets[19]$hoursets[20]$hoursets[21]$hoursets[22]$hoursets[23]$hoursets[24]\n";
-echo $row;
+$ready_table[] =  $row;
 //fwrite($f, $row);
 
 }
 //fclose($f);
-
+return $ready_table;
 ?>
