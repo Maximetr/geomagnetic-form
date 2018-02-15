@@ -1,6 +1,6 @@
 <?php
 
-include(ROOT.'/models/User.php');
+include(ROOT.'/models/Data.php');
 
 class Controller {
 
@@ -10,19 +10,17 @@ class Controller {
         $mindate = $_REQUEST['date1'];
         $maxdate = $_REQUEST['date2'];
         $kod = $_REQUEST['obsnametab'];
+        $savedata = $_REQUEST['savedata'];
 
 
-        $errors = User::Validation($mindate, $maxdate);
+        $errors = Data::Validation($mindate, $maxdate);
         if ($errors) {
            foreach ($errors as $error);
                 echo $error;
-        }   else {
-            echo "ok";
-            }
+        }
+        $output_table = Data::getData($mindate, $maxdate, $kod, $connect, $savedata);
 
-        $start_table = User::getData($mindate, $maxdate, $kod, $connect);
-
-        print_r($start_table);
+        Data::Output($output_table, $savedata, $kod);
     }
 
 }

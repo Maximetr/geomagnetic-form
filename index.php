@@ -161,8 +161,8 @@ session_start();
                                 <?php if (isset($_POST['submit1'])) : ?>
                                 <div class="textarea clearfix">
                                     <textarea readonly><?php
-                                        error_reporting(E_ALL);
-                                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                                       /*  error_reporting(E_ALL);
+                                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); */
                                         define('ROOT', dirname(__FILE__));
                                         include('components/connect.php');
                                         include('components/controller.php');
