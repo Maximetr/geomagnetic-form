@@ -163,23 +163,13 @@ session_start();
                                 <?php if (isset($_POST['submit1'])) : ?>
                                 <div class="textarea clearfix">
                                     <textarea readonly><?php
-                                        /* error_reporting(E_ALL);
+                                       /*  error_reporting(E_ALL);
                                         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); */
-                                        require_once('components/connect.php');
-                                        $iagaKod = $_REQUEST['obsnametab'];
-                                        $mindate = $_REQUEST['date1'];
-                                        $maxdate = $_REQUEST['date2'];
-                                        $format = $_REQUEST['savedata'];
-                                        if ($format == 'WDC') {
-                                            include_once('models/wdcb.php');
-                                        }
-                                        if ($format == 'CSV') {
-                                            include_once('models/csv.php');
-                                        }
-                                        if ($format == 'IAGA2002') {
-                                            include_once('models/iaga.php');
-                                        }
-
+                                        define('ROOT', dirname(__FILE__));
+                                        include('components/connect.php');
+                                        include('components/controller.php');
+                                        $controller = new Controller;
+                                        $controller->run($connect);
                                         ?></textarea>
                                         <?php endif; ?>
                                 </div>                  
@@ -207,7 +197,7 @@ session_start();
             </ul>
         </div>
         <div class="line">
-            <img src="template/logo/line.gif"></img>
+            <img src="template/line.gif"></img>
         </div>
         <p>© 1995-2018 МЦД по СЗФ, ГЦ РАН</p>
     </footer>
