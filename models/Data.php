@@ -13,14 +13,15 @@ class Data {
         return $errors;
     }
 
-    public static function getData($mindate, $maxdate, $kod, $connect, $savedata) {
+    public static function getData($mindate, $maxdate, $kod, $connect, $savedata, $email) {
 
         $input_table = array();
+        $insert = mysqli_query($connect, ("INSERT INTO user_contacts (`email`) VALUES ('$email')"));
         if ($savedata == 'IAGA2002') {
             $query = mysqli_query($connect, ("SELECT Kod, Element, Date, Basic, HourSet1,HourSet2,HourSet3,HourSet4,HourSet5,HourSet6,HourSet7,HourSet8,HourSet9,HourSet10,HourSet11,HourSet12,HourSet13,HourSet14,HourSet15,HourSet16,HourSet17,HourSet18,HourSet19,HourSet20,HourSet21,HourSet22,HourSet23,HourSet24
-                                FROM hourdata WHERE Kod = '$kod' AND Date >= '$mindate' AND Date <= '$maxdate' ORDER BY Date"));
+                                FROM hourdata WHERE Kod LIKE '$kod' AND (Date >= '$mindate' AND Date <= '$maxdate') ORDER BY Date"));
         } else {
-            $query = mysqli_query($connect, ("SELECT * FROM hourdata WHERE Kod ='$kod' AND Date>='$mindate' AND Date<='$maxdate'"));
+            $query = mysqli_query($connect, ("SELECT * FROM hourdata WHERE Kod LIKE '$kod' AND (Date>='$mindate' AND Date<='$maxdate')"));
         }
 
         while ($result = mysqli_fetch_array($query, MYSQLI_NUM)) {
@@ -283,8 +284,8 @@ class Data {
                 $el33 = 'Z';
                 $el44 = 'F';
             }
-        
-        echo " Format                  IAGA-2002                                   |
+        $file = fopen(__DIR__.'/downloadfiles/file.txt', 'w');
+        $head =  " Format                  IAGA-2002                                   |
  Source of Data                                                      |
  Station Name                                                        |
  IAGA Code               $kod                                         |
@@ -297,6 +298,8 @@ class Data {
  Data Interval Type      HOUR                                        |
  Data Type                                                           |
  DATE       TIME         DOY     " . $kod . "$el11      " . $kod . "$el22      " . $kod . "$el33      " . $kod . "$el44  |\n";
+            fwrite($file, $head);
+            echo $head;
             foreach ($array as $level1) {
                 foreach ($level1 as $level2) {
                     $date = $level2[0];
@@ -338,11 +341,15 @@ class Data {
                     
                     $string = "$date $time $doy    $el1 $el2 $el3 $el4\n";
                     echo $string;
+                    fwrite($file, $string);
+                    
                 }
             }
+            fclose($file);
         }
-        $file = output($output_table, $elements, $kod);
-        file_put_contents($_SERVER['DOCUMENT_ROOT']. '/file.txt', "$file");
+        output($output_table, $elements, $kod);
+
+
     }
 
     public static function Output($output_table, $savedata, $kod) {
@@ -350,9 +357,10 @@ class Data {
             foreach ($output_table as $row) {
                 echo $row;
             }
-            $file = 'file.txt';
-            file_put_contents($file, $output_table);
+            $file = __DIR__.'/downloadfiles/file.txt';
+        $outfile = file_put_contents($file, $output_table);
         }
+        
 
         return true;
 

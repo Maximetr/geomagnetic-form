@@ -128,13 +128,13 @@ session_start();
                         <div class = "formblock">
                             <h3>Временной интервал</h3>
                             <lable>от
-                                <input type="text" name="date1" id="date1" class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10" required>                
+                                <input type="text" name="date1" id="date1"  class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10" required>             
                             </lablel>
                             <lable>до
                                 <input type="text" name="date2" id="date2" class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10" required>
                             </label>
                         </div>
-
+                        
                         <div class = "output">
                             <h3>Формат вывода данных</h3>
                                 <label style="margin-right:-5px;">
@@ -151,7 +151,11 @@ session_start();
                                         <input type="radio" name="savedata" class="ntSaveForms" value="IAGA2002" />IAGA2002
                                         <a href="https://www.ngdc.noaa.gov/IAGA/vdat/IAGA2002/iaga2002format.html#fh" target="_blank"><img class="question" src="template/question.png" alt="О формате" title="О формате"></a>
                                     </label>
-                                </div></br>
+                                </div>
+                                <div class="formblock" style="padding-top:30px; border:none;">
+                                    <label for="email">Email </label><input type="text" name="email" id="email" >
+                                    <a href="#"><img class="question" src="template/question.png" alt="Email используется только для внутренней статистики" title="Email используется только для внутренней статистики"></a>
+                                </div>
                                     <input class="button" type="submit" value="Найти" name="submit1" id="" /></br>
                                     <div class="help"><a href="javascript:sh()">Помощь</a></div>
                         </div>
@@ -163,16 +167,17 @@ session_start();
                                 <?php if (isset($_POST['submit1'])) : ?>
                                 <div class="textarea clearfix">
                                     <textarea readonly><?php
-                                       /*  error_reporting(E_ALL);
-                                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); */
+                                        error_reporting(E_ALL);
+                                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                                         define('ROOT', dirname(__FILE__));
                                         include('components/connect.php');
-                                        include('components/controller.php');
+                                        include_once('components/controller.php');
                                         $controller = new Controller;
                                         $controller->run($connect);
                                         ?></textarea>
+                                        <a href="download.php">Скачать</a> 
                                         <?php endif; ?>
-                                </div>                  
+                                </div>               
                     </form>           
             </div>
     </div>

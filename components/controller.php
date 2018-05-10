@@ -7,10 +7,11 @@ class Controller {
     public function Run($connect) {
 
 
-        $mindate = $_REQUEST['date1'];
-        $maxdate = $_REQUEST['date2'];
-        $kod = $_REQUEST['obsnametab'];
-        $savedata = $_REQUEST['savedata'];
+        $mindate = $_POST['date1'];
+        $maxdate = $_POST['date2'];
+        $kod = $_POST['obsnametab'];
+        $savedata = $_POST['savedata'];
+        $email = $_POST['email'];
 
 
         $errors = Data::Validation($mindate, $maxdate);
@@ -18,7 +19,7 @@ class Controller {
            foreach ($errors as $error);
                 echo $error;
         }
-        $output_table = Data::getData($mindate, $maxdate, $kod, $connect, $savedata);
+        $output_table = Data::getData($mindate, $maxdate, $kod, $connect, $savedata, $email);
 
         Data::Output($output_table, $savedata, $kod);
     }
