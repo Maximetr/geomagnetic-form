@@ -1,6 +1,7 @@
 <?php
 
 include(ROOT.'/models/Data.php');
+include(ROOT.'/models/InsertData.php');
 
 class Controller {
 
@@ -22,6 +23,22 @@ class Controller {
         $output_table = Data::getData($mindate, $maxdate, $kod, $connect, $savedata, $email);
 
         Data::Output($output_table, $savedata, $kod);
+    }
+
+
+    public function StartInsert() {
+        $inputData = $_POST['inputData'];
+        $file = ROOT."/minutedata/inputfile.txt";
+        file_put_contents($file, $inputData);
+
+        echo 'Проверяю данные';
+        $checkResult = InsertData::Check($file);
+        if ($checkResult == true) {
+            echo 'Данные введены корректно, начинаю загрузку в базу данных';
+            
+        }
+
+        
     }
 
 }
