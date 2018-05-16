@@ -3,6 +3,7 @@
 include(ROOT.'/models/Data.php');
 include(ROOT.'/models/InsertData.php');
 
+
 class Controller {
 
     public function Run($connect) {
@@ -26,7 +27,7 @@ class Controller {
     }
 
 
-    public function StartInsert() {
+    public function StartInsert($connect) {
 
         $inputData = $_POST['inputData'];
         $file = ROOT."/minutedata/inputfile.txt";
@@ -36,7 +37,7 @@ class Controller {
 
         if ($checkResult === true) {
             echo "Данные корректны, начинаю добавление в базу данных\n";  
-                    
+            $result = InsertData::Insert($file, $connect);        
         } else {
             echo "Данные введены некорректно\n";
             echo "$checkResult\n";

@@ -1,5 +1,5 @@
 <?php
-$db_params = include('config/db-params.php');
+$db_params = include(ROOT.'/config/db-params.php');
 $dbhost = $db_params['host'];
 $dbuser = $db_params['user'];
 $dbpassword = $db_params['password'];

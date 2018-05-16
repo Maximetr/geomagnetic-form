@@ -112,7 +112,7 @@
                             include('components/connect.php');
                             include_once('components/controller.php');
                             $controller = new Controller;
-                            $controller->StartInsert();
+                            $controller->StartInsert($connect);
                             ?></textarea>                                    
                     </div>
                     <?php endif;?>
