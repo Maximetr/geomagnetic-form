@@ -7,7 +7,6 @@ class InsertData {
 
         $fileHandler = fopen($file, 'a+');
         $lineNumber = 1;
-        $errors = array();
 
         while (!feof($fileHandler)) {
             $row = fgets($fileHandler, 4096);
@@ -15,8 +14,8 @@ class InsertData {
             $checkResult = preg_match($regular, $row);
 
             if ($checkResult == false) {
-                $errors[] = "Строка номер $lineNumber введена неверно";
-                return $errors;
+                $error = "Строка номер $lineNumber введена неверно";
+                return $error;
                 break;
             }
             $lineNumber++;

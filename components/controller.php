@@ -27,17 +27,21 @@ class Controller {
 
 
     public function StartInsert() {
+
         $inputData = $_POST['inputData'];
         $file = ROOT."/minutedata/inputfile.txt";
         file_put_contents($file, $inputData);
 
-        echo 'Проверяю данные';
-        $checkResult = InsertData::Check($file);
-        if ($checkResult == true) {
-            echo 'Данные введены корректно, начинаю загрузку в базу данных';
-            
-        }
+       $checkResult = InsertData::Check($file);
 
+        if ($checkResult === true) {
+            echo "Данные корректны, начинаю добавление в базу данных\n";  
+                    
+        } else {
+            echo "Данные введены некорректно\n";
+            echo "$checkResult\n";
+    
+        }
         
     }
 

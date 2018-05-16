@@ -106,7 +106,7 @@
                     <?php if (isset($_POST['submit'])) : ?>
                     <label style="padding-left:45%;">Окно статуса</label>
                     <div>
-                        <textarea><?php error_reporting(E_ALL);
+                        <textarea id="progress"><?php error_reporting(E_ALL);
                             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                             define('ROOT', dirname(__FILE__));
                             include('components/connect.php');
@@ -150,19 +150,8 @@
     <script type='text/javascript' src='http://code.jquery.com/jquery-latest.min.js'></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="jquery/jquery.maskedinput.js"></script>
-    <script type="text/javascript">
-            jQuery(function($){
-            $("#date1").mask("9999-99-99",{placeholder:"yyyy-mm-dd"});
-            $("#date2").mask("9999-99-99",{placeholder:"yyyy-mm-dd"});
-            });
-    </script>
-<script type="text/javascript">
-    sh();
-    function sh() {
-    obj = document.getElementById("info");
-    if( obj.style.display == "none" ) { obj.style.display = "block"; } else { obj.style.display = "none"; }
-    }
-</script>
+
+
 <script src="main.js"></script>
 </body>
 </html>
