@@ -16,10 +16,11 @@ class Controller {
         $email = $_POST['email'];
 
 
-        $errors = Data::Validation($mindate, $maxdate);
+        $errors = Data::Validation($mindate, $maxdate, $savedata);
         if ($errors) {
            foreach ($errors as $error);
                 echo $error;
+                return false;
         }
         $output_table = Data::getData($mindate, $maxdate, $kod, $connect, $savedata, $email);
 
@@ -40,8 +41,7 @@ class Controller {
             $result = InsertData::Insert($file, $connect);        
         } else {
             echo "Данные введены некорректно\n";
-            echo "$checkResult\n";
-    
+            echo "$checkResult\n";   
         }
         
     }

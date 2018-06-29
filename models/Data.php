@@ -1,7 +1,7 @@
 <?php
 
 class Data {
-    public static function Validation($mindate, $maxdate) {
+    public static function Validation($mindate, $maxdate, $savedata) {
         $errors = array();
 
         
@@ -9,11 +9,16 @@ class Data {
         if ($maxdate < $mindate) {
             $errors[] = 'Неверно введена дата';
         }
+        if ($savedata <> 'IAGA2002' && $savedata <> 'WDC' && $savedata <> 'CSV') {
+            $errors[] = 'Выбран неизвестный формат данных';
+        }
 
         return $errors;
     }
 
     public static function getData($mindate, $maxdate, $kod, $connect, $savedata, $email) {
+
+        $errors = array();
 
         $input_table = array();
         $insert = mysqli_query($connect, ("INSERT INTO user_contacts (`email`) VALUES ('$email')"));
@@ -284,7 +289,7 @@ class Data {
                 $el33 = 'Z';
                 $el44 = 'F';
             }
-        $file = fopen(__DIR__.'/downloadfiles/file.txt', 'w');
+        // $file = fopen(__DIR__.'/downloadfiles/file.txt', 'w');
         $head =  " Format                  IAGA-2002                                   |
  Source of Data                                                      |
  Station Name                                                        |
@@ -298,7 +303,7 @@ class Data {
  Data Interval Type      HOUR                                        |
  Data Type                                                           |
  DATE       TIME         DOY     " . $kod . "$el11      " . $kod . "$el22      " . $kod . "$el33      " . $kod . "$el44  |\n";
-            fwrite($file, $head);
+            // fwrite($file, $head);
             echo $head;
             foreach ($array as $level1) {
                 foreach ($level1 as $level2) {
@@ -341,11 +346,11 @@ class Data {
                     
                     $string = "$date $time $doy    $el1 $el2 $el3 $el4\n";
                     echo $string;
-                    fwrite($file, $string);
+                    // fwrite($file, $string);
                     
                 }
             }
-            fclose($file);
+            // fclose($file);
         }
         output($output_table, $elements, $kod);
 
@@ -358,7 +363,7 @@ class Data {
                 echo $row;
             }
             $file = __DIR__.'/downloadfiles/file.txt';
-        $outfile = file_put_contents($file, $output_table);
+            $outfile = file_put_contents($file, $output_table);
         }
         
 
