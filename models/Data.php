@@ -1,14 +1,22 @@
 <?php
 
+require_once(ROOT.'/components/FormatMaker.php');
+
 class Data {
+    /*Проверка входных значений из формы
+    $errors - массив с ошибками;
+    */
     public static function Validation($mindate, $maxdate, $savedata) {
         $errors = array();
 
-        
+        if ($maxdate == '' or $mindate == ''){
+            $errors[] = 'Временной интервал должен быть заполнен';
+        }
 
         if ($maxdate < $mindate) {
-            $errors[] = 'Неверно введена дата';
+            $errors[] = 'Неверно введен временной интервал';
         }
+
         if ($savedata <> 'IAGA2002' && $savedata <> 'WDC' && $savedata <> 'CSV') {
             $errors[] = 'Выбран неизвестный формат данных';
         }
@@ -16,9 +24,32 @@ class Data {
         return $errors;
     }
 
-    public static function getData($mindate, $maxdate, $kod, $connect, $savedata, $email) {
+    /*Получение необходимых данных из БД */
+    public static function getData($mindate, $maxdate, $kod, $savedata, $email, $datatype, $connect) 
+    {
+        if ($datatype == 'hourly') {
+            $result = self::getHourlyData($mindate, $maxdate, $kod, $connect, $savedata, $email);
+            return $result;
+        }
+        if ($datatype == 'minute') {
+            $data = self::getMinuteData($mindate, $maxdate, $kod, $savedata, $email, $connect);
+            if ($savedata == 'WDC') {
+                $data = FormatMaker::WDCformat($data, $datatype);
+                return $data;
+            }
+            if ($savedata == 'CSV') {
+                $data = FormatMaker::CSVformat($data, $datatype);
+                return $data;
+            }
+            if ($savedata == 'IAGA2002') {
+                print_r($data);
+                die;
+            }
+        }
+    }
 
-        $errors = array();
+    public static function getHourlyData($mindate, $maxdate, $kod, $connect, $savedata, $email) {
+
 
         $input_table = array();
         $insert = mysqli_query($connect, ("INSERT INTO user_contacts (`email`) VALUES ('$email')"));
@@ -48,89 +79,27 @@ class Data {
         
     }
 
-    public static function Make_WDC_format($input_table) {
-        foreach ($input_table as $row) {
-            $observkod = $row[0];
-            $year = $row[1];
-            $month = $row[2];
-            $element  = $row[3];
-            $day = $row[4];
-            $usznk = $row[6];
-            $sostdays = $row[7];
-            $I = $row[8];
-            $basic = $row[9];
-            $hoursets = array($row[10],$row[11],$row[12],$row[13],$row[14],$row[15],$row[16],$row[17],$row[18],$row[19],$row[20],$row[21],$row[22],$row[23],$row[24],$row[25],$row[26],$row[27],$row[28],$row[29],$row[30],$row[31],$row[32],$row[33],$row[34]);
-            for ($j = 0; $j<=24; $j++) {
-            if ($hoursets[$j] <> "9999") {
-                $hoursets[$j] = str_pad($hoursets[$j], 4, " ", STR_PAD_LEFT);
-                }
-            }
-            if ($usznk == "99") {
-                $usznk = "  ";
-            }
-            if ($sostdays == "999") {
-                $sostdays = " ";
-            }
-            if ($I == "9") {
-                $I = " ";
-            }
-            if ($day<=9){
-                $day = "0$day";
-            }
-            if ($month<=9){
-                $month = "0$month";
-            }
-            $basic = str_pad($basic, 4, "0", STR_PAD_LEFT);
+    public static function getMinuteData($mindate, $maxdate, $kod, $savedata, $email, $connect) {
+        // mysqli_query($connect, ("INSERT INTO user_contacts (`email`) VALUES ('$email')"));
 
-            $output_row = "$observkod$year$month$element$day  $usznk$sostdays$I$basic$hoursets[0]$hoursets[1]$hoursets[2]$hoursets[3]$hoursets[4]$hoursets[5]$hoursets[6]$hoursets[7]$hoursets[8]$hoursets[9]$hoursets[10]$hoursets[11]$hoursets[12]$hoursets[13]$hoursets[14]$hoursets[15]$hoursets[16]$hoursets[17]$hoursets[18]$hoursets[19]$hoursets[20]$hoursets[21]$hoursets[22]$hoursets[23]$hoursets[24]\n";
-            array_shift($input_table);
-            $output_table[] = $output_row;
+        $data = array();
+
+        if ($savedata == 'WDC' or $savedata == 'CSV') { 
+            $query = mysqli_query($connect, ("SELECT * FROM minutedata WHERE Kod = '$kod' AND (Date >= '$mindate' AND Date <= '$maxdate') ORDER BY Date"));       
+            while ($result = mysqli_fetch_array($query, MYSQLI_NUM)) {
+                $data[] = $result;
+            }
+        }
+        if ($savedata == 'IAGA2002') {
+            $query = mysqli_query($connect, ("SELECT * FROM minutedata WHERE Kod = '$kod' AND (Date >= '$mindate' AND Date <= '$maxdate') ORDER BY Date ASC, Hour ASC, Element ASC"));
+            while ($result = mysqli_fetch_array($query, MYSQLI_NUM)) {
+                $data[] = $result;
+            }
         }
 
-        return $output_table;
+        return $data;
     }
 
-    public static function Make_CSV_format($input_table) {
-        foreach ($input_table as $row) {
-            $observkod = $row[0];
-            $year = $row[1];
-            $month = $row[2];
-            $element  = $row[3];
-            $day = $row[4];
-            $usznk = $row[6];
-            $sostdays = $row[7];
-            $I = $row[8];
-            $basic = $row[9];
-            $hoursets = array($row[10],$row[11],$row[12],$row[13],$row[14],$row[15],$row[16],$row[17],$row[18],$row[19],$row[20],$row[21],$row[22],$row[23],$row[24],$row[25],$row[26],$row[27],$row[28],$row[29],$row[30],$row[31],$row[32],$row[33],$row[34]);
-            for ($j = 0; $j<=24; $j++) {
-            if ($hoursets[$j] <> "9999") {
-                $hoursets[$j] = str_pad($hoursets[$j], 4, " ", STR_PAD_LEFT);
-                }
-            }
-            if ($usznk == "99") {
-                $usznk = "  ";
-            }
-            if ($sostdays == "999") {
-                $sostdays = " ";
-            }
-            if ($I == "9") {
-                $I = " ";
-            }
-            if ($day<=9){
-                $day = "0$day";
-            }
-            if ($month<=9){
-                $month = "0$month";
-            }
-            $basic = str_pad($basic, 4, "0", STR_PAD_LEFT);
-
-            $output_row = "$observkod,$year,$month,$element,$day,  $usznk,$sostdays,$I,$basic,$hoursets[0],$hoursets[1],$hoursets[2],$hoursets[3],$hoursets[4],$hoursets[5],$hoursets[6],$hoursets[7],$hoursets[8],$hoursets[9],$hoursets[10],$hoursets[11],$hoursets[12],$hoursets[13],$hoursets[14],$hoursets[15],$hoursets[16],$hoursets[17],$hoursets[18],$hoursets[19],$hoursets[20],$hoursets[21],$hoursets[22],$hoursets[23],$hoursets[24],\n";
-            array_shift($input_table);
-            $output_table[] = $output_row;
-        }
-
-        return $output_table;
-    }
 
     public static function Make_IAGA2002_format($input_table, $kod) {
 

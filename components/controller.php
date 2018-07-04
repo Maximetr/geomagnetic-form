@@ -2,29 +2,40 @@
 
 include(ROOT.'/models/Data.php');
 include(ROOT.'/models/InsertData.php');
+require_once(ROOT.'/components/connect.php');
 
 
 class Controller {
 
-    public function Run($connect) {
+    /*Запуск обработчика
+    $datatype - тип запрашиваемых данных;
+    $mindate - нижний край временного интервала;
+    $maxdate - верхний край временного интервала;
+    $kod - 3-х значний МАГА-код обсерватории;
+    $savedata - формат вывода данных;
+    $email - email пользователя;
+    */
+    public function run($connect) {
 
-
+        $datatype = $_POST['datatype'];
         $mindate = $_POST['date1'];
         $maxdate = $_POST['date2'];
         $kod = $_POST['obsnametab'];
         $savedata = $_POST['savedata'];
         $email = $_POST['email'];
 
-
         $errors = Data::Validation($mindate, $maxdate, $savedata);
+        
         if ($errors) {
-           foreach ($errors as $error);
-                echo $error;
-                return false;
+           foreach ($errors as $error) {
+            echo $error;
+           }
+            return false;
         }
-        $output_table = Data::getData($mindate, $maxdate, $kod, $connect, $savedata, $email);
 
-        Data::Output($output_table, $savedata, $kod);
+        $output_table = Data::getData($mindate, $maxdate, $kod, $savedata, $email, $datatype, $connect);
+        print_r($output_table);
+        // Data::Output($output_table, $savedata, $kod);
     }
 
 

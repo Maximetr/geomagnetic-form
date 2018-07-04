@@ -2,7 +2,7 @@
 
 class DB {
     public static function getConnection() {
-        $db_params = include('config/db-params.php');
+        $db_params = require_once(ROOT.'/config/db-params.php');
         $dbhost = $db_params['host'];
         $dbuser = $db_params['user'];
         $dbpassword = $db_params['user'];

@@ -96,7 +96,10 @@ session_start();
                             <div class = "formblock">
                                 <h3>Вид данных</h3>
                                     <label class="ntSaveForms">
-                                        <input type="radio" name="typedata" class="ntSaveForms" value="3" checked />Среднечасовые
+                                        <input type="radio" name="datatype" class="ntSaveForms" value="hourly"/>Среднечасовые
+                                    </label>
+                                    <label class="ntSaveForms">
+                                        <input type="radio" name="datatype" class="ntSaveForms" value="minute" checked />Минутные
                                     </label>
                             </div>
                         <div class = "formblock">
@@ -128,10 +131,10 @@ session_start();
                         <div class = "formblock">
                             <h3>Временной интервал</h3>
                             <lable>от
-                                <input type="text" name="date1" id="date1"  class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10" required>             
+                                <input type="text" name="date1" id="date1"  class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10">             
                             </lablel>
                             <lable>до
-                                <input type="text" name="date2" id="date2" class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10" required>
+                                <input type="text" name="date2" id="date2" class="ntSaveForms" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  size="10">
                             </label>
                         </div>
                         
@@ -162,7 +165,7 @@ session_start();
                 </div>
                 
                                 <div id="info" style="padding-top:15px;">
-                                <p>помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь </p>
+                                <p>помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь помощь</p>
                                 </div>
                                 <?php if (isset($_POST['submit1'])) : ?>
                                 <div class="textarea clearfix">
