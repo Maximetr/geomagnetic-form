@@ -27,10 +27,23 @@ class Data {
     /*Получение необходимых данных из БД */
     public static function getData($mindate, $maxdate, $kod, $savedata, $email, $datatype, $connect) 
     {
+        //если выбираем часовые данные
         if ($datatype == 'hourly') {
-            $result = self::getHourlyData($mindate, $maxdate, $kod, $connect, $savedata, $email);
-            return $result;
+            $data = self::getHourlyData($mindate, $maxdate, $kod, $connect, $savedata, $email);
+            if ($savedata == 'WDC') {
+                $data = FormatMaker::WDCformat($data, $datatype);
+                return $data;
+            }
+            if ($savedata == 'CSV') {
+                $data = FormatMaker::CSVformat($data, $datatype);
+                return $data;
+            }
+            if ($savedata == 'IAGA2002') {
+                $data = FormatMaker::IAGA2002format($data, $datatype);
+                die;
+            }
         }
+        //если выбираем минутные данные
         if ($datatype == 'minute') {
             $data = self::getMinuteData($mindate, $maxdate, $kod, $savedata, $email, $connect);
             if ($savedata == 'WDC') {
@@ -42,7 +55,7 @@ class Data {
                 return $data;
             }
             if ($savedata == 'IAGA2002') {
-                print_r($data);
+                $data = FormatMaker::IAGA2002format($data, $datatype);
                 die;
             }
         }
@@ -51,32 +64,20 @@ class Data {
     public static function getHourlyData($mindate, $maxdate, $kod, $connect, $savedata, $email) {
 
 
-        $input_table = array();
-        $insert = mysqli_query($connect, ("INSERT INTO user_contacts (`email`) VALUES ('$email')"));
+        $data = array();
+        // $insert = mysqli_query($connect, ("INSERT INTO user_contacts (`email`) VALUES ('$email')"));
         if ($savedata == 'IAGA2002') {
             $query = mysqli_query($connect, ("SELECT Kod, Element, Date, Basic, HourSet1,HourSet2,HourSet3,HourSet4,HourSet5,HourSet6,HourSet7,HourSet8,HourSet9,HourSet10,HourSet11,HourSet12,HourSet13,HourSet14,HourSet15,HourSet16,HourSet17,HourSet18,HourSet19,HourSet20,HourSet21,HourSet22,HourSet23,HourSet24
-                                FROM hourdata WHERE Kod LIKE '$kod' AND (Date >= '$mindate' AND Date <= '$maxdate') ORDER BY Date"));
+                                FROM hourdata WHERE Kod LIKE '$kod' AND (Date >= '$mindate' AND Date <= '$maxdate') ORDER BY Date ASC, Element ASC"));
         } else {
             $query = mysqli_query($connect, ("SELECT * FROM hourdata WHERE Kod LIKE '$kod' AND (Date>='$mindate' AND Date<='$maxdate')"));
         }
 
         while ($result = mysqli_fetch_array($query, MYSQLI_NUM)) {
-            $input_table[] = $result;
+            $data[] = $result;
         }
 
-        if ($savedata == 'WDC') {
-            $output_table = self::Make_WDC_format($input_table);
-            return $output_table;
-        }
-        if ($savedata == 'CSV') {
-            $output_table = self::Make_CSV_format($input_table);
-            return $output_table;
-        }
-        if ($savedata == 'IAGA2002') {
-            $output_table = self::Make_IAGA2002_format($input_table, $kod);
-            return $output_table;
-        }
-        
+        return $data;
     }
 
     public static function getMinuteData($mindate, $maxdate, $kod, $savedata, $email, $connect) {

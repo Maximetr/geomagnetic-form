@@ -237,5 +237,62 @@ header a {
 	margin-left:-5px;
 }
 
+.userform {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: middle;
+
+}
+.cabinet {
+	text-align:left;
+	display: inline-block;
+}
+.cabinet a {
+	font-size:85%;
+}
+
+.navigate {
+	display: inline-block;
+	float: left;
+	width: 20%;
+	height: 20%;
+
+}
+.navigate .item {
+	background-color: rgb(169, 172, 172);
+	border: 1px solid rgb(169, 172, 172);
+	margin-top:5px;
+	padding:9px 0px 9px 0px;
+}
+
+.navigate a {
+	display: block;
+	text-decoration: none;	
+}
+.navigate .sel {
+	background-color: rgb(250, 248, 248);
+	border: 1px solid rgb(169, 172, 172);
+}
+.search {
+	display: inline-block;
+	width: 20%;
+	height:100%;
+}
+.userlist {
+	width: 70%;
+	float:right;
+}
+.userlist li div {
+	display: inline-block;
+	/* border-bottom:0.5px solid grey; */
+	width:190px;
+	padding:0;
+	margin:0;
+}
+.menu {
+	display: inline-block;
+	width: 75%;
+}
+
 
 

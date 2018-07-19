@@ -1,11 +1,11 @@
 <?php
 
-include(ROOT.'/models/Data.php');
-include(ROOT.'/models/InsertData.php');
+require_once(ROOT.'/models/Data.php');
+require_once(ROOT.'/models/InsertData.php');
 require_once(ROOT.'/components/connect.php');
 
 
-class Controller {
+class SiteController {
 
     /*Запуск обработчика
     $datatype - тип запрашиваемых данных;
@@ -33,8 +33,8 @@ class Controller {
             return false;
         }
 
-        $output_table = Data::getData($mindate, $maxdate, $kod, $savedata, $email, $datatype, $connect);
-        print_r($output_table);
+        $data = Data::getData($mindate, $maxdate, $kod, $savedata, $email, $datatype, $connect);
+        print_r($data);
         // Data::Output($output_table, $savedata, $kod);
     }
 

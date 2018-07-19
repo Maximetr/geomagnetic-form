@@ -1,5 +1,7 @@
 <?php
 
+require_once(ROOT.'/components/AssistantFunctions.php');
+
 class FormatMaker
 {
     public static function WDCformat($data, $datatype)
@@ -168,6 +170,72 @@ class FormatMaker
 
     public static function IAGA2002format($data, $datatype)
     {
-        
+        //если выбераем часовые данные
+        if ($datatype == 'hourly') {
+
+            $elementSet = AssistantFunctions::elementCheck($data[0], $data[1], $data[2], $data[3]);
+
+            $recalculateData = AssistantFunctions::recalculateElement($data, $elementSet);
+
+            // print_r($recalculateData);
+            end($recalculateData);
+            $end = key($recalculateData);
+            $string = '';
+            if ($elementSet == 'DHZ' or $elementSet == 'XYZ') {
+                //работаем по 3 строчки
+                for ($i=0; $i<=$end;) {
+                    $row0 = $recalculateData[$i];
+                    $row1 = $recalculateData[$i+1];
+                    $row2 = $recalculateData[$i+2];
+                    if ($row0[2] == $row1[2] && $row1[2] == $row2[2]) {
+                        $explode_date = explode('-', $row0[2]);
+                        $doy = date('z', mktime(0,0,0,$explode_date[1], $explode_date[2],$explode_date[0])) +1;
+                        $doy = str_pad($doy, 3, '0', STR_PAD_LEFT);
+                        for ($j=4; $j<=27; $j++) {
+                            $hour = str_pad($j-4, 2, '0', STR_PAD_LEFT);
+                            $el0 = str_pad($row0[$j], 9, ' ', STR_PAD_LEFT);
+                            $el1 = str_pad($row1[$j], 9, ' ', STR_PAD_LEFT);
+                            $el2 = str_pad($row2[$j], 9, ' ', STR_PAD_LEFT);
+                            $string .= "$row0[2] $hour:30:00.000 $doy    $el0 $el1 $el2  99999.00\n";
+                        }
+                    }
+                    $i = $i+3;
+                }
+            }
+
+            if ($elementSet == 'DFHZ' or $elementSet == 'FXYZ') {
+                //работаем по 4 строчки
+                for ($i=0; $i<=$end;) {
+                    $row0 = $recalculateData[$i];
+                    $row1 = $recalculateData[$i+1];
+                    $row2 = $recalculateData[$i+2];
+                    $row3 = $recalculateData[$i+3];
+                    if ($row0[2] == $row1[2] && $row1[2] == $row2[2] && $row2[2] == $row3[2]) {
+                        $explode_date = explode('-', $row0[2]);
+                        $doy = date('z', mktime(0,0,0,$explode_date[1], $explode_date[2],$explode_date[0])) +1;
+                        $doy = str_pad($doy, 3, '0', STR_PAD_LEFT);
+                        for ($j=4; $j<=27; $j++) {
+                            $hour = str_pad($j-4, 2, '0', STR_PAD_LEFT);
+                            $el0 = str_pad($row0[$j], 9, ' ', STR_PAD_LEFT);
+                            $el1 = str_pad($row1[$j], 9, ' ', STR_PAD_LEFT);
+                            $el2 = str_pad($row2[$j], 9, ' ', STR_PAD_LEFT);
+                            $el3 = str_pad($row3[$j], 9, ' ', STR_PAD_LEFT);
+                            if ($elementSet == 'DFHZ') {
+                                $string .= "$row0[2] $hour:30:00.000 $doy    $el0 $el2 $el3 $el1\n";
+                            } elseif ($elementSet == 'FXYZ') {
+                                $string .= "$row0[2] $hour:30:00.000 $doy    $el1 $el2 $el3 $el0\n";
+                            }
+                        }
+                    }
+                    $i = $i+4;
+                }  
+            }
+        return $string;
+        }
+
+        //если выбираем минутные значения
+        if ($datatype == 'minute') {
+            
+        }
     }
 }

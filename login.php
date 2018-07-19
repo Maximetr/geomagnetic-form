@@ -1,10 +1,6 @@
-<?php 
+<?php
 session_start();
-define('ROOT', dirname(__FILE__));
-require_once(ROOT.'/models/User.php');
-require_once(ROOT.'/components/connect.php');
-require_once(ROOT.'/controllers/SiteController.php');
-$userData = User::getUserByID($_SESSION['userID'], $connect);
+if (isset($_SESSION['userID'])) header("Location: cabinet.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -61,79 +57,40 @@ $userData = User::getUserByID($_SESSION['userID'], $connect);
         </div>
     </header>
     <div class = "mainbody">
-
-    <!-- _________________________Панель навигации_______________ -->
-        <!-- <div class="nav-bar">
-            <ul>
-                <li>
-                    <div class="nav-item">
-                        раздел
-                    </div>
-                </li>
-                <li>
-                    <div class="nav-item border">
-                        раздел
-                    </div>
-                </li>
-                <li>                                                        
-                    <div class="nav-item border">
-                        раздел
-                    </div>
-                </li>
-                <li>
-                    <div class="nav-item border">
-                        раздел
-                    </div>
-                </li>
-            </ul>
-        </div> -->
-
-    <!--________________________Конец панели_____________________-->
-
-
-
         <div class = "content clearfix">
-            <?php if (!isset($_SESSION['userID'])) :?>
-                <p>Страница доступна только для авторизованных пользователей, пожалуйста войдите в систему
-                на <a href="#">специальной странице</a></p>
-            <?php endif;?>
-            <?php if (isset($_SESSION['userID'])) : ?>
-            <div class="navigate">
-                <div class="item"><a href="cabinet.php">Мой кабинет</a></div>
-                <div class="item"><a href="/">Выбор данных</a></div>
-                <div class="item sel"><a href="databaseinsert.php">Загрузка данных</a></div>
-                <?php if ($userData[3] == 1) :?>
-                <div class="item"><a href="adminpanel.php">Панель администратора</a></div>
-                <?php endif;?>
-            </div>
-            <div class = "form" style="width:75%;">
-            <label>Вставьте данные в поле</label>
-                <!-- <div class="formblock">
-                    чекбоксы для типов данных
-                </div> -->
-                <form method="post" action="databaseinsert.php">                                                       
-                    <div class="textarea clearfix">
-                        <textarea name="inputData" style="width:100%;"><?php if (isset($_POST['submit'])) {
-                            echo $_POST['inputData'];
-                        }?></textarea>
-                    </div>  
-                    <input type="submit" name="submit" id="submit" value="Добавить данные">           
+        <?php if (isset($_POST['submit'])) {
+                error_reporting(E_ALL);
+                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                define('ROOT', dirname(__FILE__));
+                require_once(ROOT.'/components/connect.php');
+                require_once(ROOT.'/controllers/UserController.php');
+                session_start();
+                $user = new UserController;
+                $result = $user->actionLogin($connect);
+            } ?>
+            <h3>Вход</h3>
+            <div class="form" style="text-align:right;">  
+                <form action="login.php" method="post">
+                    <div class="userform">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" value="<?php if (isset($_POST['email'])) echo $_POST['email'];?>">
+                    </div>
+                    <div class="userform">
+                        <label for="password">Пароль</label>
+                        <input type="text" name="password" id="password">
+                    </div>
+
+                    <input type="submit" name="submit" value="Войти">
+                    
                 </form>
-                <?php if (isset($_POST['submit'])) : ?>
-                <label style="padding-left:45%;">Окно статуса</label>
-                <div>
-                    <textarea id="progress"><?php error_reporting(E_ALL);
-                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                        
-                        $controller = new SiteController;
-                        $controller->StartInsert($connect);
-                    ?></textarea>                                    
-                </div>
-                <?php endif;?>
             </div>
-            <?php endif;?>
+            <div style="padding-top:15px;">
+                <label>Нет аккаунта? <a href='registration.php'>Зарегестрироваться</a></label>
+            </div>
         </div>
-    <footer>
+    </div>
+
+<footer>
         <div class = "footer-menu">
             <ul>
                 <li>
@@ -170,7 +127,3 @@ $userData = User::getUserByID($_SESSION['userID'], $connect);
 <script src="main.js"></script>
 </body>
 </html>
-    
-
-
-

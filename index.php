@@ -173,12 +173,12 @@ session_start();
                                         error_reporting(E_ALL);
                                         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                                         define('ROOT', dirname(__FILE__));
-                                        include('components/connect.php');
-                                        include_once('components/controller.php');
+                                        require_once('components/connect.php');
+                                        require_once(ROOT.'/controllers/SiteController.php');
                                         $controller = new Controller;
                                         $controller->run($connect);
                                         ?></textarea>
-                                        <a href="download.php">Скачать</a> 
+                                        <!-- <a href="download.php">Скачать</a>  -->
                                         <?php endif; ?>
                                 </div>               
                     </form>           
